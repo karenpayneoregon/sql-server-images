@@ -178,13 +178,24 @@ Build the project followed by running the project. On an average machine the ins
 Expected when the form is displayed.
 
 ![Figure1](assets/Figure1.png)
+
+## Accessibility
+
+Each form control has accessibility properties set, its always wise to consider visually impaired users of your application.
+
+## Source code
+
+Clone the following [GitHub repository](https://github.com/karenpayneoregon/sql-server-images)
+
 ## NuGet packages
 
 - [ConfigurationLibrary](https://www.nuget.org/packages/ConfigurationLibrary/1.0.1?_src=template) This library provides a method to obtain a connection string from appsettings.json to use with a data provider or Entity Framework Core, intended for desktop applications as ASP.NET Core has this already with more options via dependency injection.
 - [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient/5.1.1?_src=template) Provides the data provider for SQL Server. These classes provide access to versions of SQL Server and encapsulate database-specific protocols, including tabular data stream (TDS)
 
 
+## Article location
 
+https://dev.to/karenpayneoregon/sql-server-working-with-images-dp3
 
 
  
