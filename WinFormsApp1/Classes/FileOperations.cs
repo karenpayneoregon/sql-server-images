@@ -9,5 +9,6 @@ internal class FileOperations
     /// </returns>
     public static List<string> GetImages() 
         => Directory.GetFiles(
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images")).ToList();
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images"))
+            .ToList();
 }

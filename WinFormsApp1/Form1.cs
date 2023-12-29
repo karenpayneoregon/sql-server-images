@@ -13,17 +13,19 @@ public partial class Form1 : Form
 
     private void Form1_Shown(object sender, EventArgs e)
     {
+        // start fresh each time this app runs
         PhotoOperations.TruncateTable();
 
         var fileList = FileOperations.GetImages();
 
+        // insert records into table using Dapper
         foreach (var name in fileList)
         {
-            PhotoOperations.InsertImage(File.ReadAllBytes(name), 
+            PhotoOperations.InsertImageDapper(File.ReadAllBytes(name),
                 Path.GetFileNameWithoutExtension(name));
         }
 
-        ImagesComboBox.DataSource = PhotoOperations.Read();
+        ImagesComboBox.DataSource = PhotoOperations.ReadDapper();
         ImagesComboBox.SelectedIndexChanged += ImagesComboBoxOnSelectedIndexChanged;
 
         ShowCurrentImage();
@@ -64,6 +66,19 @@ public partial class Form1 : Form
     {
         var current = ((PhotoContainer)ImagesComboBox.SelectedItem);
         MessageBox.Show($"ID {current.Id} Description {current.Description}");
+    }
 
+    private void DapperSetImageButton_Click(object sender, EventArgs e)
+    {
+        var (success, container) = PhotoOperations.ReadImageDapper(3);
+        if (success)
+        {
+            pictureBox1.Image = container.Picture;
+        }
+        else
+        {
+            MessageBox.Show("Nope");
+        }
+        
     }
 }

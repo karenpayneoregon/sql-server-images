@@ -1,29 +1,18 @@
 ﻿using System.Data;
+using Dapper;
 using Microsoft.Data.SqlClient;
 using WinFormsApp1.Models;
+
 using static ConfigurationLibrary.Classes.ConfigurationHelper;
+
 namespace WinFormsApp1.Classes;
 
 internal class PhotoOperations
 {
     public static int InsertImage(byte[] imageBytes, string description)
     {
-        var sql = 
-            """
-                INSERT INTO [dbo].[Pictures1] 
-                    (
-                        [Photo], 
-                        Description
-                    ) 
-                VALUES 
-                (
-                    @ByteArray, 
-                    @Description
-                )
-            """;
-
         using var cn = new SqlConnection(ConnectionString());
-        using var cmd = new SqlCommand(sql, cn);
+        using var cmd = new SqlCommand(SqlStatements.InsertImage, cn);
         
         cmd.Parameters.Add("@ByteArray", SqlDbType.VarBinary).Value = imageBytes;
         cmd.Parameters.Add("@Description", SqlDbType.NVarChar).Value = description;
@@ -31,6 +20,12 @@ internal class PhotoOperations
         cn.Open();
 
         return cmd.ExecuteNonQuery();
+    }
+
+    public static int InsertImageDapper(byte[] imageBytes, string description)
+    {
+        using var cn = new SqlConnection(ConnectionString());
+        return cn.Execute(SqlStatements.InsertImage, new { ByteArray = imageBytes, Description = description});
     }
 
     /// <summary>
@@ -41,20 +36,8 @@ internal class PhotoOperations
     {
         PhotoContainer photoContainer = new() { Id = identifier };
 
-        var sql = 
-            """
-                SELECT 
-                    id, 
-                    Photo,
-                    Description
-                FROM 
-                    dbo.Pictures1 
-                WHERE 
-                    dbo.Pictures1.id = @id;
-            """;
-
         using var cn = new SqlConnection(ConnectionString());
-        using var cmd = new SqlCommand(sql, cn);
+        using var cmd = new SqlCommand(SqlStatements.SelectImageByIdentifier, cn);
 
         cmd.Parameters.Add("@Id", SqlDbType.Int).Value = identifier;
         
@@ -67,12 +50,7 @@ internal class PhotoOperations
             reader.Read();
 
             photoContainer.Description = reader.GetString(2);
-            var imageData = (byte[])reader[1];
-            using (var ms = new MemoryStream(imageData, 0, imageData.Length))
-            {
-                ms.Write(imageData, 0, imageData.Length);
-                photoContainer.Picture = Image.FromStream(ms, true);
-            }
+            photoContainer.Picture = ((byte[])reader[1]).BytesToImage();
 
             return (photoContainer, true);
         }
@@ -83,25 +61,42 @@ internal class PhotoOperations
         
     }
 
+    public static (bool success, PhotoContainer) ReadImageDapper(int identifier)
+    {
+        using var cn = new SqlConnection(ConnectionString());
+        var container =  cn.QueryFirstOrDefault<PhotoContainer>(SqlStatements.SelectImageByIdentifier, new {id = identifier});
+        if (container is not null)
+        {
+            container.Picture = container.Photo.BytesToImage();
+
+            return (true, container);
+        }
+
+        return (false, null);
+    }
+
+    public static List<PhotoContainer> ReadDapper()
+    {
+        using var cn = new SqlConnection(ConnectionString());
+        IEnumerable<PhotoContainer> list = cn.Query<PhotoContainer>(SqlStatements.ReadAllImages);
+
+        foreach (var container in list)
+        {
+            container.Picture = container.Photo.BytesToImage();
+        }
+        return list.AsList();
+    }
+
     /// <summary>
     /// Read all records from the Picture1 table into our container
     /// </summary>
     public static List<PhotoContainer> Read()
     {
-        var sql = 
-            """
-                SELECT 
-                    Id,
-                    Photo,
-                    [Description] 
-                FROM 
-                    dbo.Pictures1
-            """;
 
         var list = new List<PhotoContainer>();
 
         using var cn = new SqlConnection(ConnectionString());
-        using var cmd = new SqlCommand(sql, cn);
+        using var cmd = new SqlCommand(SqlStatements.ReadAllImages, cn);
 
         cn.Open();
         var reader = cmd.ExecuteReader();
