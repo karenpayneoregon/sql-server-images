@@ -22,10 +22,10 @@ internal class PhotoOperations
         return cmd.ExecuteNonQuery();
     }
 
-    public static int InsertImageDapper(byte[] imageBytes, string description)
+    public static async Task<int> InsertImageDapper(byte[] imageBytes, string description)
     {
-        using var cn = new SqlConnection(ConnectionString());
-        return cn.Execute(SqlStatements.InsertImage, new { ByteArray = imageBytes, Description = description});
+        await using var cn = new SqlConnection(ConnectionString());
+        return await cn.ExecuteAsync(SqlStatements.InsertImage, new { ByteArray = imageBytes, Description = description});
     }
 
     /// <summary>
@@ -75,10 +75,10 @@ internal class PhotoOperations
         return (false, null);
     }
 
-    public static List<PhotoContainer> ReadDapper()
+    public static async Task<List<PhotoContainer>> ReadDapper()
     {
-        using var cn = new SqlConnection(ConnectionString());
-        IEnumerable<PhotoContainer> list = cn.Query<PhotoContainer>(SqlStatements.ReadAllImages);
+        await using var cn = new SqlConnection(ConnectionString());
+        var list = await cn.QueryAsync<PhotoContainer>(SqlStatements.ReadAllImages);
 
         foreach (var container in list)
         {
@@ -126,7 +126,7 @@ internal class PhotoOperations
     /// <summary>
     /// Provides a reset so that the table does not grow while learning
     /// </summary>
-    public static void TruncateTable()
+    public static async Task TruncateTableAsync()
     {
         var sql = "TRUNCATE TABLE dbo.Pictures1;";
 
@@ -134,7 +134,7 @@ internal class PhotoOperations
         using var cmd = new SqlCommand(sql, cn);
 
         cn.Open();
-        cmd.ExecuteNonQuery();
+        await cmd.ExecuteNonQueryAsync();
     }
 
 }

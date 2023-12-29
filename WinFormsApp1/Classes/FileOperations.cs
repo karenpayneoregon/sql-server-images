@@ -11,4 +11,9 @@ internal class FileOperations
         => Directory.GetFiles(
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images"))
             .ToList();
+
+
+    public static async Task<List<string>> GetImagesAsync(string path)
+        => await Task.Run(()
+            => Task.FromResult(Directory.EnumerateFiles(path).ToList()));
 }

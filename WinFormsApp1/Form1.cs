@@ -11,22 +11,30 @@ public partial class Form1 : Form
         Shown += Form1_Shown;
     }
 
-    private void Form1_Shown(object sender, EventArgs e)
+    private async void Form1_Shown(object sender, EventArgs e)
     {
-        // start fresh each time this app runs
-        PhotoOperations.TruncateTable();
-
-        var fileList = FileOperations.GetImages();
-
-        // insert records into table using Dapper
-        foreach (var name in fileList)
+        SuspendLayout();
+        try
         {
-            PhotoOperations.InsertImageDapper(File.ReadAllBytes(name),
-                Path.GetFileNameWithoutExtension(name));
-        }
+            // start fresh each time this app runs
+            await PhotoOperations.TruncateTableAsync();
 
-        ImagesComboBox.DataSource = PhotoOperations.ReadDapper();
-        ImagesComboBox.SelectedIndexChanged += ImagesComboBoxOnSelectedIndexChanged;
+            var fileList = await FileOperations.GetImagesAsync("Images");
+
+            // insert records into table using Dapper
+            foreach (var name in fileList)
+            {
+                await PhotoOperations.InsertImageDapper(await File.ReadAllBytesAsync(name),
+                    Path.GetFileNameWithoutExtension(name));
+            }
+
+            ImagesComboBox.DataSource = await PhotoOperations.ReadDapper();
+            ImagesComboBox.SelectedIndexChanged += ImagesComboBoxOnSelectedIndexChanged;
+        }
+        finally
+        {
+            ResumeLayout();
+        }
 
         ShowCurrentImage();
 
