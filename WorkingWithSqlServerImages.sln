@@ -10,7 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		readme.md = readme.md
 	EndProjectSection
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WinFormsApp_vb", "WinFormsApp_vb\WinFormsApp_vb.vbproj", "{FADAD15C-2F39-44FA-8C18-FFC2A9AB0EBA}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "WinFormsApp_vb", "WinFormsApp_vb\WinFormsApp_vb.vbproj", "{FADAD15C-2F39-44FA-8C18-FFC2A9AB0EBA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NorthWindCategories", "NorthWindCategories\NorthWindCategories.csproj", "{B91ADABA-E606-464F-B71F-41B38D0BDB6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{F5940807-CF58-4131-B7BF-5271F7326FB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +30,14 @@ Global
 		{FADAD15C-2F39-44FA-8C18-FFC2A9AB0EBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FADAD15C-2F39-44FA-8C18-FFC2A9AB0EBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FADAD15C-2F39-44FA-8C18-FFC2A9AB0EBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B91ADABA-E606-464F-B71F-41B38D0BDB6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B91ADABA-E606-464F-B71F-41B38D0BDB6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B91ADABA-E606-464F-B71F-41B38D0BDB6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B91ADABA-E606-464F-B71F-41B38D0BDB6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5940807-CF58-4131-B7BF-5271F7326FB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5940807-CF58-4131-B7BF-5271F7326FB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5940807-CF58-4131-B7BF-5271F7326FB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5940807-CF58-4131-B7BF-5271F7326FB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
