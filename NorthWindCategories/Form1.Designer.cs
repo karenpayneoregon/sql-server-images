@@ -29,11 +29,12 @@ partial class Form1
     private void InitializeComponent()
     {
         UpdateButton = new Button();
+        SerializeButton = new Button();
         SuspendLayout();
         // 
         // UpdateButton
         // 
-        UpdateButton.Location = new Point(116, 86);
+        UpdateButton.Location = new Point(116, 66);
         UpdateButton.Name = "UpdateButton";
         UpdateButton.Size = new Size(94, 29);
         UpdateButton.TabIndex = 0;
@@ -41,11 +42,22 @@ partial class Form1
         UpdateButton.UseVisualStyleBackColor = true;
         UpdateButton.Click += UpdateButton_Click;
         // 
+        // SerializeButton
+        // 
+        SerializeButton.Location = new Point(116, 121);
+        SerializeButton.Name = "SerializeButton";
+        SerializeButton.Size = new Size(94, 29);
+        SerializeButton.TabIndex = 1;
+        SerializeButton.Text = "Serialize";
+        SerializeButton.UseVisualStyleBackColor = true;
+        SerializeButton.Click += SerializeButton_Click;
+        // 
         // Form1
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(326, 200);
+        Controls.Add(SerializeButton);
         Controls.Add(UpdateButton);
         FormBorderStyle = FormBorderStyle.FixedToolWindow;
         Name = "Form1";
@@ -56,4 +68,5 @@ partial class Form1
     #endregion
 
     private Button UpdateButton;
+    private Button SerializeButton;
 }

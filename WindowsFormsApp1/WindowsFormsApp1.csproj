@@ -52,6 +52,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="NorthWind2024DataSet.cs">
+      <DependentUpon>NorthWind2024DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="NorthWind2024DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

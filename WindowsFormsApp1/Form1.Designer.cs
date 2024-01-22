@@ -35,21 +35,23 @@
             this.categoriesTableAdapter = new WindowsFormsApp1.NorthWind2024DataSetTableAdapters.CategoriesTableAdapter();
             this.tableAdapterManager = new WindowsFormsApp1.NorthWind2024DataSetTableAdapters.TableAdapterManager();
             this.categoriesBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.photoPictureBox = new System.Windows.Forms.PictureBox();
+            this.picturePictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.northWind2024DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingNavigator)).BeginInit();
             this.categoriesBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.photoPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picturePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // northWind2024DataSet
@@ -96,9 +98,16 @@
             this.categoriesBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.categoriesBindingNavigator.Name = "categoriesBindingNavigator";
             this.categoriesBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.categoriesBindingNavigator.Size = new System.Drawing.Size(417, 27);
+            this.categoriesBindingNavigator.Size = new System.Drawing.Size(556, 31);
             this.categoriesBindingNavigator.TabIndex = 0;
             this.categoriesBindingNavigator.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -106,7 +115,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMoveFirstItem.Text = "Move first";
             // 
             // bindingNavigatorMovePreviousItem
@@ -133,16 +142,9 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorMoveNextItem
@@ -165,23 +167,33 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // photoPictureBox
             // 
             this.photoPictureBox.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.categoriesBindingSource, "Photo", true));
-            this.photoPictureBox.Location = new System.Drawing.Point(109, 99);
+            this.photoPictureBox.Location = new System.Drawing.Point(26, 58);
             this.photoPictureBox.Name = "photoPictureBox";
             this.photoPictureBox.Size = new System.Drawing.Size(198, 153);
             this.photoPictureBox.TabIndex = 2;
             this.photoPictureBox.TabStop = false;
             // 
+            // picturePictureBox
+            // 
+            this.picturePictureBox.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.categoriesBindingSource, "Picture", true));
+            this.picturePictureBox.Location = new System.Drawing.Point(230, 58);
+            this.picturePictureBox.Name = "picturePictureBox";
+            this.picturePictureBox.Size = new System.Drawing.Size(171, 153);
+            this.picturePictureBox.TabIndex = 3;
+            this.picturePictureBox.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(417, 351);
+            this.ClientSize = new System.Drawing.Size(556, 351);
+            this.Controls.Add(this.picturePictureBox);
             this.Controls.Add(this.photoPictureBox);
             this.Controls.Add(this.categoriesBindingNavigator);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -195,6 +207,7 @@
             this.categoriesBindingNavigator.ResumeLayout(false);
             this.categoriesBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.photoPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picturePictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,6 +230,7 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.PictureBox photoPictureBox;
+        private System.Windows.Forms.PictureBox picturePictureBox;
     }
 }
 

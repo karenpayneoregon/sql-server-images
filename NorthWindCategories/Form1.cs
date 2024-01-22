@@ -1,4 +1,5 @@
 
+using System.Text.Json;
 using NorthWindCategories.Models;
 
 namespace NorthWindCategories;
@@ -18,4 +19,13 @@ public partial class Form1 : Form
         cat.Photo = bytes;
         var result = context.SaveChanges();
     } // set breakpoint to validate
+
+    private void SerializeButton_Click(object sender, EventArgs e)
+    {
+        var fileName = "Categories.json";
+        using var context = new Context();
+        var list = context.Categories.ToList();
+        File.WriteAllText(fileName, JsonSerializer.Serialize(list,
+            new JsonSerializerOptions { WriteIndented = true }));
+    }
 }
