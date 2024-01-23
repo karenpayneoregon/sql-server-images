@@ -13,7 +13,11 @@ namespace NorthWindCategoriesJson.Classes;
 internal class DapperOperations
 {
     private readonly IDbConnection _cn 
-        = new SqlConnection("Data Source=.\\sqlexpress;Initial Catalog=NorthWind2024;Integrated Security=True;Encrypt=False");
+        = new SqlConnection(
+            """
+            Data Source=.\sqlexpress;Initial Catalog=NorthWind2024;
+            Integrated Security=True;Encrypt=False
+            """);
 
     public void UpdateImage()
     {

@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsApp1", "WinFormsApp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{36E04278-B7DC-482D-980E-40039F51F3A8}"
 	ProjectSection(SolutionItems) = preProject
+		NorthWind2024.sql = NorthWind2024.sql
 		readme.md = readme.md
 	EndProjectSection
 EndProject
@@ -16,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NorthWindCategories", "Nort
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{F5940807-CF58-4131-B7BF-5271F7326FB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NorthWindCategoriesJson", "NorthWindCategoriesJson\NorthWindCategoriesJson.csproj", "{C9F12D5F-A5CE-44D3-A094-E94152DABE2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NorthWindCategoriesJson", "NorthWindCategoriesJson\NorthWindCategoriesJson.csproj", "{C9F12D5F-A5CE-44D3-A094-E94152DABE2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
