@@ -7,14 +7,14 @@ namespace NorthWindCategoriesJson;
 
 public partial class Form1 : Form
 {
-    private BindingSource _bindingSource = new BindingSource();
+    private BindingSource _bindingSource = [];
     public Form1()
     {
         InitializeComponent();
         Shown += Form1_Shown;
     }
 
-    private void Form1_Shown(object? sender, EventArgs e)
+    private void Form1_Shown(object sender, EventArgs e)
     {
 
         //DapperOperations operations = new DapperOperations();
