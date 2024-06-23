@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Diagnostics;
 using Dapper;
 using Microsoft.Data.SqlClient;
 using WinFormsApp1.Models;
@@ -87,6 +88,14 @@ internal class PhotoOperations
         return list.AsList();
     }
 
+    public static async Task<List<PhotoContainer>> ReadDapper1()
+    {
+        await using var cn = new SqlConnection(ConnectionString());
+        return  (await cn.QueryAsync<PhotoContainer>(SqlStatements.ReadAllImages)).AsList();
+    }
+
+
+
     /// <summary>
     /// Read all records from the Picture1 table into our container
     /// </summary>
@@ -123,6 +132,8 @@ internal class PhotoOperations
         return list;
     }
 
+
+
     /// <summary>
     /// Provides a reset so that the table does not grow while learning
     /// </summary>
@@ -130,8 +141,8 @@ internal class PhotoOperations
     {
         var sql = "TRUNCATE TABLE dbo.Pictures1;";
 
-        using var cn = new SqlConnection(ConnectionString());
-        using var cmd = new SqlCommand(sql, cn);
+        await using var cn = new SqlConnection(ConnectionString());
+        await using var cmd = new SqlCommand(sql, cn);
 
         cn.Open();
         await cmd.ExecuteNonQueryAsync();

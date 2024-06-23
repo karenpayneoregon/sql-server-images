@@ -32,7 +32,7 @@
 	  <None Update="Images\github.png">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Images\Mitata.png">
+	  <None Update="Images\Miata.png">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	  <None Update="Images\Oops.png">

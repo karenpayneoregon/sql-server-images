@@ -30,12 +30,12 @@ partial class Form1
     {
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
         ImagesComboBox = new ComboBox();
-        pictureBox1 = new PictureBox();
+        CurrentImageBox = new PictureBox();
         InvalidReadButton = new Button();
         ValidReadButton = new Button();
         CurrentDetailsButton = new Button();
         DapperSetImageButton = new Button();
-        ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)CurrentImageBox).BeginInit();
         SuspendLayout();
         // 
         // ImagesComboBox
@@ -50,17 +50,17 @@ partial class Form1
         ImagesComboBox.Size = new Size(208, 28);
         ImagesComboBox.TabIndex = 0;
         // 
-        // pictureBox1
+        // CurrentImageBox
         // 
-        pictureBox1.AccessibleDescription = "Image container to display image selected by ComboBox above";
-        pictureBox1.AccessibleName = "ImageContainer";
-        pictureBox1.AccessibleRole = AccessibleRole.Graphic;
-        pictureBox1.Location = new Point(29, 63);
-        pictureBox1.Name = "pictureBox1";
-        pictureBox1.Size = new Size(125, 62);
-        pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
-        pictureBox1.TabIndex = 1;
-        pictureBox1.TabStop = false;
+        CurrentImageBox.AccessibleDescription = "Image container to display image selected by ComboBox above";
+        CurrentImageBox.AccessibleName = "ImageContainer";
+        CurrentImageBox.AccessibleRole = AccessibleRole.Graphic;
+        CurrentImageBox.Location = new Point(29, 63);
+        CurrentImageBox.Name = "CurrentImageBox";
+        CurrentImageBox.Size = new Size(125, 62);
+        CurrentImageBox.SizeMode = PictureBoxSizeMode.AutoSize;
+        CurrentImageBox.TabIndex = 1;
+        CurrentImageBox.TabStop = false;
         // 
         // InvalidReadButton
         // 
@@ -119,14 +119,14 @@ partial class Form1
         Controls.Add(CurrentDetailsButton);
         Controls.Add(ValidReadButton);
         Controls.Add(InvalidReadButton);
-        Controls.Add(pictureBox1);
+        Controls.Add(CurrentImageBox);
         Controls.Add(ImagesComboBox);
         FormBorderStyle = FormBorderStyle.FixedToolWindow;
         Icon = (Icon)resources.GetObject("$this.Icon");
         Name = "Form1";
         StartPosition = FormStartPosition.CenterScreen;
         Text = "SQL-Server working with images";
-        ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+        ((System.ComponentModel.ISupportInitialize)CurrentImageBox).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -134,7 +134,7 @@ partial class Form1
     #endregion
 
     private ComboBox ImagesComboBox;
-    private PictureBox pictureBox1;
+    private PictureBox CurrentImageBox;
     private Button InvalidReadButton;
     private Button ValidReadButton;
     private Button CurrentDetailsButton;

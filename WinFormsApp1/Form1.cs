@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using WinFormsApp1.Classes;
 using WinFormsApp1.Models;
 
@@ -5,6 +6,7 @@ namespace WinFormsApp1;
 
 public partial class Form1 : Form
 {
+    private BindingList<PhotoContainer> PhotoContainers;
     public Form1()
     {
         InitializeComponent();
@@ -13,6 +15,7 @@ public partial class Form1 : Form
 
     private async void Form1_Shown(object sender, EventArgs e)
     {
+        string[] include = ["**/*.png"];
         SuspendLayout();
         try
         {
@@ -28,7 +31,8 @@ public partial class Form1 : Form
                     Path.GetFileNameWithoutExtension(name));
             }
 
-            ImagesComboBox.DataSource = await PhotoOperations.ReadDapper();
+            PhotoContainers = new BindingList<PhotoContainer>(await PhotoOperations.ReadDapper1());
+            ImagesComboBox.DataSource = PhotoContainers;
             ImagesComboBox.SelectedIndexChanged += ImagesComboBoxOnSelectedIndexChanged;
         }
         finally
@@ -47,7 +51,8 @@ public partial class Form1 : Form
 
     private void ShowCurrentImage()
     {
-        pictureBox1.Image = ((PhotoContainer)ImagesComboBox.SelectedItem).Picture;
+        //CurrentImageBox.Image = ((PhotoContainer)ImagesComboBox.SelectedItem).Photo.BytesToImage();
+        CurrentImageBox.Image = PhotoContainers[ImagesComboBox.SelectedIndex].Image;
     }
 
     private void InvalidReadButton_Click(object sender, EventArgs e)
@@ -73,7 +78,8 @@ public partial class Form1 : Form
     private void CurrentDetailsButton_Click(object sender, EventArgs e)
     {
         var current = ((PhotoContainer)ImagesComboBox.SelectedItem);
-        MessageBox.Show($"ID {current.Id} Description {current.Description}");
+        //MessageBox.Show($"ID {current.Id} Description {current.Description}");
+        CurrentImageBox.Image = current.Picture;
     }
 
     private void DapperSetImageButton_Click(object sender, EventArgs e)
@@ -81,7 +87,7 @@ public partial class Form1 : Form
         var (success, container) = PhotoOperations.ReadImageDapper(3);
         if (success)
         {
-            pictureBox1.Image = container.Picture;
+            CurrentImageBox.Image = container.Picture;
         }
         else
         {
